@@ -1,8 +1,8 @@
 # config-workstation
 
-This repository contain an Ansible playbook used to set up a workstation with main tools for daily use.
+This repository contains an Ansible playbook used to set up a workstation with main tools for daily use.
 
-This Ansible playbook was tested in Linux Mint 19.0 (Ubuntu Bionic based).
+This playbook was tested in Linux Mint 19.0 (Ubuntu Bionic based).
 
 1. Go to your user's directory:
 
