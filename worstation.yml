@@ -1,0 +1,121 @@
+---
+- name: Preparing Workstation
+  hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Installing Linux Apps
+      become: true
+      apt:
+        name: '{{ item }}'
+        install_recommends: yes
+        state: present
+      loop:
+          - vim
+          - htop
+          - wget
+          - python3-pip
+          - make
+          - git
+          - flameshot
+          - mlocate
+          - cherrytree
+
+    - block:
+      - name: Install Virtualbox Oracle Key
+        become: true
+        apt_key:
+          url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+          state: present
+      - name: Add Virtualbox Oracle repository
+        become: true
+        apt_repository:
+          repo: 'deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib'
+          state: present
+          filename: virtualbox
+      - name: Install Oracle Virtualbox
+        become: true
+        apt:
+          name: virtualbox-6.1
+
+    - block:
+      - name: Installing Vagrant 2.2.15
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/vagrant/2.2.15/vagrant_2.2.15_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+
+    - block:
+      - name: Installing Terraform 0.12.30
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/terraform/0.12.30/terraform_0.12.30_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+      - name: Renaming terraform12 binary
+        become: true
+        command: mv /usr/local/bin/terraform /usr/local/bin/terraform12
+      - name: Installing Terraform 0.13.6
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+      - name: Renaming terraform13 binary
+        become: true
+        command: mv /usr/local/bin/terraform /usr/local/bin/terraform13
+      - name: Installing Terraform 0.14.10
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/terraform/0.14.10/terraform_0.14.10_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+      - name: Renaming terraform14 binary
+        become: true
+        command: mv /usr/local/bin/terraform /usr/local/bin/terraform14
+      - name: Installing Terraform 0.15.0
+        become: true
+        unarchive:
+          src: 'https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip'
+          dest: /usr/local/bin
+          remote_src: yes
+      - name: Renaming terraform15 binary
+        become: true
+        command: mv /usr/local/bin/terraform /usr/local/bin/terraform15
+
+          
+    - block:
+      - name: Install Microsoft Key
+        become: true
+        apt_key:
+          url: 'https://packages.microsoft.com/keys/microsoft.asc'
+          state: present
+      - name: Add Microsoft Teams Repository
+        become: true
+        apt_repository:
+          repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main'
+          state: present
+          filename: teams
+      - name: Install Microsoft Teams
+        become: true
+        apt:
+          name: teams
+        
+
+    - block: 
+      - name: Install Brave Key
+        become: true
+        apt_key:
+          url: 'https://brave-browser-apt-release.s3.brave.com/brave-core.asc'
+          state: present
+      - name: Install Brave Repository
+        become: true
+        apt_repository:
+          repo: 'deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main'
+          state: present
+          filename: brave
+      - name: Install Brave Browser
+        become: true
+        apt:
+          name: brave-browser
