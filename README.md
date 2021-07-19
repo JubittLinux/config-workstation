@@ -19,11 +19,11 @@ $ sudo apt update && sudo apt install ansible unzip git
 3. Clone repository:
 
 ```console
-git clone https://github.com/JubittLinux/config-workstation.git
+$ git clone https://github.com/JubittLinux/config-workstation.git
 ```
 
 4. Apply:
 
 ```console
-ansible-playbook tools/workstation.yml --ask-become-pass
+$ ansible-playbook tools/workstation.yml --ask-become-pass
 ```
