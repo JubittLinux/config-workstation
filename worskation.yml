@@ -46,44 +46,6 @@
           dest: /usr/local/bin
           remote_src: yes
 
-    - block:
-      - name: Installing Terraform 0.12.30
-        become: true
-        unarchive:
-          src: 'https://releases.hashicorp.com/terraform/0.12.30/terraform_0.12.30_linux_amd64.zip'
-          dest: /usr/local/bin
-          remote_src: yes
-      - name: Renaming terraform12 binary
-        become: true
-        command: mv /usr/local/bin/terraform /usr/local/bin/terraform12
-      - name: Installing Terraform 0.13.6
-        become: true
-        unarchive:
-          src: 'https://releases.hashicorp.com/terraform/0.13.6/terraform_0.13.6_linux_amd64.zip'
-          dest: /usr/local/bin
-          remote_src: yes
-      - name: Renaming terraform13 binary
-        become: true
-        command: mv /usr/local/bin/terraform /usr/local/bin/terraform13
-      - name: Installing Terraform 0.14.10
-        become: true
-        unarchive:
-          src: 'https://releases.hashicorp.com/terraform/0.14.10/terraform_0.14.10_linux_amd64.zip'
-          dest: /usr/local/bin
-          remote_src: yes
-      - name: Renaming terraform14 binary
-        become: true
-        command: mv /usr/local/bin/terraform /usr/local/bin/terraform14
-      - name: Installing Terraform 0.15.0
-        become: true
-        unarchive:
-          src: 'https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip'
-          dest: /usr/local/bin
-          remote_src: yes
-      - name: Renaming terraform15 binary
-        become: true
-        command: mv /usr/local/bin/terraform /usr/local/bin/terraform15
-
           
     - block:
       - name: Install Microsoft Key
